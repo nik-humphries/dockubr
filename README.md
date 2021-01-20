@@ -4,6 +4,8 @@
 
 Takes a vector of package names. Returns the code to install dependencies for Docker / Ubuntu 18.04
 
+Last updated package lookup table on 20-01-2021
+
 ### Installation
 
 There are a variety of methods for installing packages directly from gitlab. You may want to research these and find the most appropriate for you. 
