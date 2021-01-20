@@ -28,6 +28,9 @@ As follows
     library(dockubu)
 
     dockubu::generateDockerText(c("gert", "sf", "rkafka"))
+
+    # Get list of packages from lockfile
+    dockubu::packageVectorFromlockfile("G:\\Projects\\renv.lock")
     
 ## Project information
 
