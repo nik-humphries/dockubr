@@ -10,7 +10,7 @@ generateDockerText(yourpackages)
 \item{yourpackages}{Vector of package names}
 }
 \value{
-
+Console output to copy into your docker file
 }
 \description{
 Output the thing to copy / paste into your dockerfile

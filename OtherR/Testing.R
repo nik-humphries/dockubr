@@ -9,6 +9,8 @@ dockubu::generateDockerText(c("gert", "sf", "rkafka"))
 dockubu::generateDockerText(c("sf"))
 dockubu::generateDockerText(c("gert"))
 
+dockubu::packageVectorFromlockfile("G:\\Projects\\renv.lock")
+
 deps = qq
 
 createAptGet(deps)
