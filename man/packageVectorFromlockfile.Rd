@@ -2,7 +2,7 @@
 % Please edit documentation in R/GenerateDockerFile.R
 \name{packageVectorFromlockfile}
 \alias{packageVectorFromlockfile}
-\title{Get list of packages in lock file}
+\title{Get vector of packages in lock file}
 \usage{
 packageVectorFromlockfile(lockfilepath)
 }
@@ -13,5 +13,5 @@ packageVectorFromlockfile(lockfilepath)
 A vector of package names
 }
 \description{
-Get list of packages in lock file
+Get vector of packages in lock file
 }

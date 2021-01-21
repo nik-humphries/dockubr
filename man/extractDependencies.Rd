@@ -7,7 +7,7 @@
 extractDependencies(yourpackages)
 }
 \arguments{
-\item{yourpackages}{list of packages passed by user}
+\item{yourpackages}{Vector of packages as passed by the user}
 
 \item{dep_list}{dependency list}
 }
