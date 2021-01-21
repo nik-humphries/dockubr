@@ -2,16 +2,16 @@
 % Please edit documentation in R/GenerateDockerFile.R
 \name{createRCMD}
 \alias{createRCMD}
-\title{dddddd}
+\title{Execute the R CMD commands}
 \usage{
 createRCMD(deps)
 }
 \arguments{
-\item{deps}{dasdasd}
+\item{deps}{Dependency lookup table (package, dependency, type)}
 }
 \value{
 
 }
 \description{
-dddddd
+Execute the R CMD commands
 }

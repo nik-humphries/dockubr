@@ -2,16 +2,16 @@
 % Please edit documentation in R/GenerateDockerFile.R
 \name{createAptGet}
 \alias{createAptGet}
-\title{asdad}
+\title{Create the text that does the apt-get commands, this needs to run after addapt}
 \usage{
 createAptGet(deps)
 }
 \arguments{
-\item{deps}{Doesn't matyter}
+\item{deps}{Dependency lookup table (package, dependency, type)}
 }
 \value{
 
 }
 \description{
-asdad
+Create the text that does the apt-get commands, this needs to run after addapt
 }

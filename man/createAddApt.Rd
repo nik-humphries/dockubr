@@ -2,16 +2,16 @@
 % Please edit documentation in R/GenerateDockerFile.R
 \name{createAddApt}
 \alias{createAddApt}
-\title{aaaaaaaaaaa}
+\title{Create the add-apt parts for installing from external repos. This MUST be run first.}
 \usage{
 createAddApt(deps)
 }
 \arguments{
-\item{deps}{}
+\item{deps}{Dependency lookup table (package, dependency, type)}
 }
 \value{
 
 }
 \description{
-aaaaaaaaaaa
+Create the add-apt parts for installing from external repos. This MUST be run first.
 }
