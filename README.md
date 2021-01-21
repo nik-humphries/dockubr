@@ -4,6 +4,10 @@
 
 Takes a vector of package names. Returns the code to install dependencies for Docker / Ubuntu 18.04
 
+Also can process a lock file to achieve the same effect (2 separate functions)
+
+Last updated package lookup table on 20-01-2021 from https://packagemanager.rstudio.com/client/#/repos/1/overview
+
 ### Installation
 
 There are a variety of methods for installing packages directly from gitlab. You may want to research these and find the most appropriate for you. 
@@ -28,7 +32,26 @@ As follows
     library(dockubu)
 
     dockubu::generateDockerText(c("gert", "sf", "rkafka"))
+
+    # Get list of packages from lockfile
+    dockubu::packageVectorFromlockfile("G:\\Projects\\renv.lock")
     
+
+### libgit2-dev
+
+There is a dependency conflict relating to libcurl4-gnutls-dev, this external repo installs a version og libgit2 that doesn't require it.
+
+This dep must be installed from a different source, if it's required, it will add it at the TOP of the dockerfile. It will look something like 
+    `add-apt-repository 'deb [trusted=yes] http://ppa.launchpad.net/cran/libgit2/ubuntu <UBUNTU CODENAME> main'`
+
+Here you should replace <UBUNTU CODENAME> with your ubuntu codename, e.g. focal. The code generated MUST go at the top. It'll look something like..
+    `RUN apt-get update && \ 
+    apt-get install -y software-properties-common 
+
+    RUN add-apt-repository 'deb [trusted=yes] http://ppa.launchpad.net/cran/libgit2/ubuntu focal main' && \
+    apt-get update && \
+    apt-get -y install libgit2-dev`
+
 ## Project information
 
 ### **Status**
