@@ -10,7 +10,7 @@ extractDependencies <- function(yourpackages) {
 
   package <- NULL
 
-  dep_list2 <- dep_list %>%
+  dep_list2 <- dockubu::dep_list %>%
     dplyr::filter(package %in% yourpackages)
 
   notfound <- yourpackages[!yourpackages %in% (dep_list2 %>% dplyr::distinct(package) %>% dplyr::pull())]
