@@ -4,10 +4,13 @@
 \alias{createAddApt}
 \title{Create the add-apt parts for installing from external repos. This MUST be run first.}
 \usage{
-createAddApt(deps)
+createAddApt(deps, ppa = TRUE)
 }
 \arguments{
 \item{deps}{Dependency lookup table (package, dependency, type)}
+
+\item{ppa}{Some base images don't work properly with ppa, if it doesn't set this to FALSE and it will try and hard code
+the path to the PPA. If you set this to FALSE, you must set your version of Ubuntu (e.g. focal etc.)}
 }
 \value{
 
