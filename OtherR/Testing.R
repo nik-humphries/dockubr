@@ -5,6 +5,7 @@ yourpackages <- c("gert", "sf", "rkafka", "dplyr")
 
 
 dockubu::generateDockerText(yourpackages)
+dockubu::generateDockerText(yourpackages, ppa = FALSE)
 dockubu::generateDockerText(c("gert", "sf", "rkafka"))
 dockubu::generateDockerText(c("sf"))
 dockubu::generateDockerText(c("gert"))
@@ -20,4 +21,4 @@ dockerfile::createdeps(yourpackages)
 
 
 dockubu::packageVectorFromlockfile("G:\\Projects\\renv.lock") %>%
-  generateDockerText()
+  dockubu::generateDockerText()

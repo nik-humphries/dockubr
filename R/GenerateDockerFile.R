@@ -86,11 +86,13 @@ createRCMD <- function(deps) {
 #' Create the add-apt parts for installing from external repos. This MUST be run first.
 #'
 #' @param deps Dependency lookup table (package, dependency, type)
+#' @param ppa Some base images don't work properly with ppa, if it doesn't set this to FALSE and it will try and hard code
+#' the path to the PPA. If you set this to FALSE, you must set your version of Ubuntu (e.g. focal etc.)
 #'
 #' @return
 #'
 #' @importFrom magrittr %>%
-createAddApt <- function(deps) {
+createAddApt <- function(deps, ppa = TRUE) {
 
 
   libnames <- deps %>%
@@ -112,13 +114,18 @@ createAddApt <- function(deps) {
 
   # Hardcoded fix fot libgit2
   # Replace the add ppa with a custom one
+  # This needs to be done sometimes, but not other times ... So add a switch for this
+  # May need to hardcode these in for other PPA's.
 
-  addapt <- addapt %>%
-    dplyr::mutate(dependency =
-             dplyr::case_when(
-               stringr::str_detect(dependency, "ppa:cran/libgit2") ~ stringr::str_replace(dependency, "-y ppa:cran/libgit2", "'deb [trusted=yes] http://ppa.launchpad.net/cran/libgit2/ubuntu <UBUNTU CODENAME> main'"),
-               TRUE ~ dependency
-             ))
+  if(ppa == FALSE) {
+      addapt <- addapt %>%
+                  dplyr::mutate(dependency =
+                                 dplyr::case_when(
+                                   stringr::str_detect(dependency, "ppa:cran/libgit2") ~ stringr::str_replace(dependency, "-y ppa:cran/libgit2", "'deb [trusted=yes] http://ppa.launchpad.net/cran/libgit2/ubuntu <UBUNTU CODENAME> main'"),
+                                   TRUE ~ dependency
+                                 ))
+  }
+
 
   for(aname in 1:nrow(addapt)) {
 
@@ -149,13 +156,18 @@ createAddApt <- function(deps) {
 #'
 #' @return Console output to copy into your docker file
 #' @export
-generateDockerText <- function(yourpackages) {
+#'
+#' @examples
+#' somepackages <- c("gert", "sf", "rkafka", "dplyr")
+#' generateDockerText(somepackages)
+#' generateDockerText(somepackages, ppa = FALSE)
+generateDockerText <- function(yourpackages, ppa = TRUE) {
 
   if(class(yourpackages) != "character") stop("Class of package vector is not character")
 
   qq <- extractDependencies(yourpackages)
 
-  void_sink <- createAddApt(qq)
+  void_sink <- createAddApt(qq, ppa)
   cat("\n")
   void_sink <- createAptGet(qq)
   cat("\n")

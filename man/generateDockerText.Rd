@@ -4,7 +4,7 @@
 \alias{generateDockerText}
 \title{Output the thing to copy / paste into your dockerfile}
 \usage{
-generateDockerText(yourpackages)
+generateDockerText(yourpackages, ppa = TRUE)
 }
 \arguments{
 \item{yourpackages}{Vector of package names}
@@ -14,4 +14,9 @@ Console output to copy into your docker file
 }
 \description{
 Output the thing to copy / paste into your dockerfile
+}
+\examples{
+somepackages <- c("gert", "sfd", "rkafka", "dplyr")
+generateDockerText(somepackages)
+generateDockerText(somepackages, ppa = FALSE)
 }
