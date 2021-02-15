@@ -16,7 +16,7 @@ Console output to copy into your docker file
 Output the thing to copy / paste into your dockerfile
 }
 \examples{
-somepackages <- c("gert", "sfd", "rkafka", "dplyr")
+somepackages <- c("gert", "sf", "rkafka", "dplyr")
 generateDockerText(somepackages)
 generateDockerText(somepackages, ppa = FALSE)
 }
