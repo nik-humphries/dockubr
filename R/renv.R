@@ -38,13 +38,22 @@ CheckifInRenv <- function() {
 #' @export
 removeFromRenv <- function() {
 
-  renv::settings$ignored.packages(
-    unique(
-      c("dockubu",
-        renv::settings$ignored.packages()
+  if(checkIfRenvActivated() == FALSE) {
+    print("renv not active for this project")
+    return()
+  } else {
+    renv::settings$ignored.packages(
+      unique(
+        c("dockubu",
+          renv::settings$ignored.packages()
         )
       )
     )
+    print("Added to renv file, new list is below")
+    print(renv::settings$ignored.packages())
+  }
+
+
 
 }
 
