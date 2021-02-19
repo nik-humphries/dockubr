@@ -37,7 +37,7 @@ As follows
     dockubu::packageVectorFromlockfile("G:\\Projects\\renv.lock")
     
 
-### libgit2-dev
+### ppa / libgit2-dev
 
 There is a dependency conflict relating to libcurl4-gnutls-dev, this external repo installs a version og libgit2 that doesn't require it.
 
@@ -51,6 +51,42 @@ Here you should replace <UBUNTU CODENAME> with your ubuntu codename, e.g. focal.
     RUN add-apt-repository 'deb [trusted=yes] http://ppa.launchpad.net/cran/libgit2/ubuntu focal main' && \
     apt-get update && \
     apt-get -y install libgit2-dev`
+
+The above code can be generated in two ways, one with the ppa and one with the hardcoded link (sometimes the ppa doesn't work on versions of rocker and vice versa..)
+
+With ppa = TRUE
+
+    > dockubu::generateDockerText("git2r", ppa = TRUE)
+    RUN apt-get update && \ 
+    apt-get install -y software-properties-common 
+
+    RUN add-apt-repository -y ppa:cran/libgit2 && \ 
+    apt-get update && \ 
+    apt-get -y install libgit2-dev
+
+    ...
+
+With ppa = FALSE
+
+    > dockubu::generateDockerText("git2r", ppa = FALSE)
+    RUN apt-get update && \ 
+    apt-get install -y software-properties-common 
+
+    RUN add-apt-repository 'deb [trusted=yes] http://ppa.launchpad.net/cran/libgit2/ubuntu <UBUNTU CODENAME> main' && \ 
+    apt-get update && \ 
+    apt-get -y install libgit2-dev 
+
+    ...
+
+### Removing from renv
+
+It is recommended to not include dockubu in the renv lockfile, as it is not necessary for your docker container (more than likely).
+
+If renv is activated, you can remove dockubu from it by using `dockubu::removeFromRenv()`
+
+### Getting Docker Text from lockfile
+
+By using `dockubu::lockFileDeps()` you can generate docker text for the project you are currently working on (if renv is activated). You can pass a lockfile located anywhere on your system (if you're not in a renv project) by doing `dockubu::lockFileDeps("/path/to/lockfile/")`.
 
 ## Project information
 
