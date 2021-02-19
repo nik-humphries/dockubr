@@ -8,8 +8,6 @@ extractDependencies(yourpackages)
 }
 \arguments{
 \item{yourpackages}{Vector of packages as passed by the user}
-
-\item{dep_list}{dependency list}
 }
 \value{
 

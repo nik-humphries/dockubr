@@ -8,6 +8,8 @@ generateDockerText(yourpackages, ppa = TRUE)
 }
 \arguments{
 \item{yourpackages}{Vector of package names}
+
+\item{ppa}{TRUE / FALSE - Output the ppa or the hardcoded link for external repos}
 }
 \value{
 Console output to copy into your docker file
